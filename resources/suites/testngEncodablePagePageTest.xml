@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test on firefox">
+	<listeners>
+        <listener class-name="com.fpt.nflat.tests.ListenerClass" />
+    </listeners>
+
+  <test name="Test Login pages">
+  <parameter name="browser" value="firefox" />
+  <classes>
+	  <class name="com.fpt.nflat.tests.WebTokenGeneratorPageTest">
+		<methods>
+	  		<include name="autoNFLAT_VerifyTokenGenerator" />
+	  	</methods>
+	  </class>
+	  </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
