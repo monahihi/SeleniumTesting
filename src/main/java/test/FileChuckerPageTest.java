@@ -1,6 +1,5 @@
 package test;
 
-import java.Providers;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
@@ -16,6 +15,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
+
+import utils.Providers;
 
 public class FileChuckerPageTest extends Providers {
 	WebDriver driver;
