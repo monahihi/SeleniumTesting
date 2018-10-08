@@ -1,9 +1,7 @@
 package test;
 
 import java.util.ArrayList;
-
 import object_repositories.FileChuckerProperties;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
