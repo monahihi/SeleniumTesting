@@ -1,27 +1,24 @@
 package test;
 
-import java.Providers;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-import java.util.List;
+import java.util.ArrayList;
 
 import object_repositories.FileChuckerProperties;
 
-import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
-public class FileChuckerPageTest extends Providers {
+import utils.ProvidersUtils;
+
+public class FileChuckerPageTest extends ProvidersUtils {
 	WebDriver driver;
+	ArrayList<String> expectedResult = new ArrayList<String>();
+	ArrayList<String> actualResult = new ArrayList<String>();
 
 	@BeforeMethod
-	public void beforeMethod(WebDriver driver) {
+	public void beforeMethod() {
 		driver = setupDriver();
 	}
 
@@ -29,12 +26,13 @@ public class FileChuckerPageTest extends Providers {
 	public void scenariosTest() throws InterruptedException {
 		driver.get(URL);
 
-		// Actions
+		/*-------- Actions ------------*/
 		// Choose upload file
 		By fileChucker_btnChooseFile = FileChuckerProperties
 				.getFileChucker_btnChooseFile();
 		driver.findElement(fileChucker_btnChooseFile).click();
 		uploadFileRobot(uploadFileLocation);
+		Thread.sleep(3000);
 
 		// Destination of upload file
 		By fileChucker_SelectOption_UploadTo = FileChuckerProperties
@@ -62,47 +60,57 @@ public class FileChuckerPageTest extends Providers {
 		By fileChucker_btnUpload = FileChuckerProperties
 				.getFileChucker_btnUpload();
 		driver.findElement(fileChucker_btnUpload).click();
+		Thread.sleep(10000);
 
-		// Verify results
-
+		/*-------------- Verify results ------------*/
 		// Email adress
 		By fileChuckerCompleted_txtEmailAddress = FileChuckerProperties
 				.getFileChuckerCompleted_txtEmailAddress();
 		String email = driver.findElement(fileChuckerCompleted_txtEmailAddress)
 				.getText();
-		String emailActual = email.substring(email.indexOf("Email Address: "),
-				email.length());
+		String emailActual = email.substring(
+				email.indexOf("nashtech@gmail.com"), email.length());
+		System.out.println(emailActual);
 
 		// Firstname
+		Thread.sleep(6000);
 		By fileChuckerCompleted_txtFirstName = FileChuckerProperties
 				.getFileChuckerCompleted_txtFirstName();
 		String firstName = driver
 				.findElement(fileChuckerCompleted_txtFirstName).getText();
 		String firstNameActual = firstName.substring(
-				firstName.indexOf("First Name: "), firstName.length());
+				firstName.indexOf("NASH TECH"), firstName.length());
+		System.out.println(firstNameActual);
 
 		// Filename
+		Thread.sleep(6000);
 		By fileChuckerCompleted_txtFileName = FileChuckerProperties
 				.getFileChuckerCompleted_txtFileName();
 		String fileName = driver.findElement(fileChuckerCompleted_txtFileName)
 				.getText();
-		String fileNameActual = fileName.substring(
-				fileName.indexOf("File 1 of 2: "), fileName.length());
+		System.out.println(fileName);
 
+		System.out.println("\n ----------------RESULT------------------ \n");
 		if (emailActual.equals("nashtech@gmail.com")) {
 			System.out.println("Email test result: Passed");
+		} else {
+			System.out.println("Email test result: Failed");
 		}
 		if (firstNameActual.equals("NASH TECH")) {
 			System.out.println("Firstname test result: Passed");
+		} else {
+			System.out.println("Firstname test result: Failed");
 		}
 		if (fileName.equals("UploadFile.jpg")) {
-			System.out.println("Upload file name test result: Passed");
+			System.out.println("File name test result: Passed");
+		} else {
+			System.out.println("File name test result: Failed");
 		}
 	}
 
 	@AfterMethod
-	public void afterMethod(WebDriver driver) {
-		driver.close();
+	public void afterMethod() {
+		driver.quit();
 	}
 
 }

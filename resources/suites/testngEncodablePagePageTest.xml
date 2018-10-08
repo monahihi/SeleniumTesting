@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test on firefox">
-	<listeners>
-        <listener class-name="com.fpt.nflat.tests.ListenerClass" />
-    </listeners>
-
-  <test name="Test Login pages">
-  <parameter name="browser" value="firefox" />
+<suite name="Test FileChucker pages on Chrome">
+  <test name="Test FileChucker pages">
   <classes>
-	  <class name="com.fpt.nflat.tests.WebTokenGeneratorPageTest">
+	  <class name="test.FileChuckerPageTest">
 		<methods>
-	  		<include name="autoNFLAT_VerifyTokenGenerator" />
+	  		<include name="scenariosTest" />
 	  	</methods>
 	  </class>
 	  </classes>
